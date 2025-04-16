@@ -3,7 +3,7 @@ name: react
 on:
   push:
     branches:
-      - main
+      - release-2.14
   pull_request:
 
 permissions:  
@@ -25,7 +25,7 @@ jobs:
         with:
           node-version: ${{ matrix.node }}
 
-      - uses: actions/cache@0c45773b623bea8c8e75f6c82b208c3cf94ea4f9 # v4.0.2
+      - uses: actions/cache@v3 # Updated to v3
         with:
           path: ~/.npm
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}

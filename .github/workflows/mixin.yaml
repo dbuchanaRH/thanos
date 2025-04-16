@@ -2,9 +2,9 @@ name: mixin
 
 on:
   push:
-    branches: [main]
+    branches: [release-2.14]
   pull_request:
-    branches: [main]
+    branches: [release-2.14]
 
 permissions:  
   contents: read
