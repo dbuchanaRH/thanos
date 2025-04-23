@@ -3,8 +3,11 @@ name: react
 on:
   push:
     branches:
-      - main
+      - release-2.14
   pull_request:
+
+permissions:  
+  contents: read
 
 jobs:
   build:
@@ -15,14 +18,14 @@ jobs:
     name: React UI test on Node ${{ matrix.node }}
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
 
       - name: Install nodejs
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@1e60f620b9541d16bece96c5465dc8ee9832be0b # v4.0.3
         with:
           node-version: ${{ matrix.node }}
 
-      - uses: actions/cache@v3
+      - uses: actions/cache@v3 # Updated to v3
         with:
           path: ~/.npm
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
