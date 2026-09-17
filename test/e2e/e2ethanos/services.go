@@ -15,6 +15,7 @@ import (
 	"github.com/efficientgo/core/backoff"
 	"github.com/efficientgo/e2e"
 	e2edb "github.com/efficientgo/e2e/db"
+	e2emon "github.com/efficientgo/e2e/monitoring"
 	e2eobs "github.com/efficientgo/e2e/observable"
 	"github.com/pkg/errors"
 	"github.com/prometheus/prometheus/config"
@@ -82,6 +83,12 @@ func DefaultImage() string {
 	}
 
 	return "thanos"
+}
+
+const MinioImage = "quay.io/minio/minio:RELEASE.2025-09-07T16-13-09Z"
+
+func NewMinio(env e2e.Environment, name, bktName string, opts ...e2edb.Option) *e2emon.InstrumentedRunnable {
+	return e2edb.NewMinio(env, name, bktName, append([]e2edb.Option{e2edb.WithImage(MinioImage)}, opts...)...)
 }
 
 func defaultPromHttpConfig() string {
